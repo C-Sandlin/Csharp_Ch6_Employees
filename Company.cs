@@ -11,7 +11,7 @@ namespace employees
         public DateTime CreatedOn { get; }
 
         // Create a public property for holding a list of current employees
-        public List<Employee> EmployeeList { get; set; }
+        private List<Employee> _employeeList;
 
         /*
             Create a constructor method that accepts two arguments:
@@ -24,22 +24,27 @@ namespace employees
         {
             Name = name;
             CreatedOn = DateTime.Now;
-            EmployeeList = new List<Employee>();
+            _employeeList = new List<Employee>();
         }
 
         // Methods
         public void AddEmployeeToPayroll(Employee employee)
         {
-            EmployeeList.Add(employee);
+            _employeeList.Add(employee);
         }
 
         public void ListEmployees()
         {
             Console.WriteLine($"The employees are:");
-            foreach (Employee employee in EmployeeList)
+            foreach (Employee employee in _employeeList)
             {
                 Console.WriteLine($"{employee.FirstName} {employee.LastName} works for {Name} as {employee.Title} since {employee.StartDate}");
             }
+        }
+
+        public Employee GetEmployeeById(int id)
+        {
+            return _employeeList[id];
         }
     }
 
